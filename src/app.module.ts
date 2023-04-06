@@ -1,9 +1,11 @@
 import { Module } from '@nestjs/common';
-import { BooksController } from './Controllers/books/books.controller';
-import { AuthorController } from './Controllers/author/author.controller';
-
+import { BooksController } from './Adapter/Controllers/books/books.controller';
+import { AuthorController } from './Adapter/Controllers/author/author.controller';
+import { MongooseModule } from '@nestjs/mongoose';
 @Module({
-  imports: [],
+  imports: [
+    MongooseModule.forRoot('mongodb://localhost/libary')
+  ],
   controllers: [BooksController, AuthorController],
   providers: [],
 })

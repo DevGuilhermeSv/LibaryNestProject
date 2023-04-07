@@ -1,29 +1,36 @@
-import { IsNotEmpty, IsNumber, IsPositive, IsString, MaxLength, MinLength, ValidateNested, isPositive } from "class-validator";
-import { AuthorDto } from "./Author.dto";
-import { Type } from "class-transformer";
+import {
+  IsNotEmpty,
+  IsNumber,
+  IsPositive,
+  IsString,
+  MaxLength,
+  MinLength,
+  ValidateNested,
+} from 'class-validator';
+import { AuthorDto } from './Author.dto';
+import { Type } from 'class-transformer';
 
-export class BookDto{
+export class BookDto {
+  @IsNotEmpty()
+  @IsString()
+  @MinLength(4)
+  @MaxLength(30)
+  readonly name: string;
 
-    @IsNotEmpty()
-    @IsString()
-    @MinLength(4)
-    @MaxLength(30)
-    readonly name: string;
+  @IsNotEmpty()
+  @Type(() => AuthorDto)
+  @ValidateNested({ each: true, message: 'Author need be valid' })
+  readonly author: AuthorDto[];
 
-    @IsNotEmpty()
-    @Type(()=>AuthorDto)
-    @ValidateNested({each:true, message:"Author need be valid"})
-    readonly author: AuthorDto[];
+  @IsString()
+  @MaxLength(30)
+  readonly language: string;
 
-    @IsString()
-    @MaxLength(30)
-    readonly language: string;
+  @IsPositive()
+  readonly releaseYear: number;
+  readonly publisher: string;
 
-    @IsPositive()
-    readonly releaseYear: number;
-    readonly publisher: string;
-
-    @IsNumber()
-    @IsPositive()
-    readonly pages: number;
+  @IsNumber()
+  @IsPositive()
+  readonly pages: number;
 }

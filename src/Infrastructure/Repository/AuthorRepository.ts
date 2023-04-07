@@ -1,15 +1,18 @@
 import { Injectable } from '@nestjs/common';
-import Repository from './IRepository';
+import Repository from './Repository';
+import IAuthor from 'src/Domain/Interfaces/IAuthor';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { AuthorDto } from 'src/Application/Dto/Author.dto';
 
 @Injectable()
-export class AuthorRepository extends Repository<'Author'> {
-  getAll(): Promise<'Author'[]> {
-    throw new Error('Method not implemented.');
+export class AuthorRepository extends Repository<IAuthor> {
+  constructor(
+    @InjectModel('author') private readonly authorModel: Model<IAuthor>,
+  ) {
+    super(authorModel);
   }
-  create(item: 'Author'): Promise<'Author'> {
-    throw new Error('Method not implemented.');
-  }
-  update(id: string, item: 'Author') {
-    throw new Error('Method not implemented.');
+  getAuthor(id: any): Promise<AuthorDto> {
+    return this.authorModel.findById(id).exec();
   }
 }

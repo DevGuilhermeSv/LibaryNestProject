@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common';
-import IBooksService from 'src/Domain/Interfaces/services/IBooks.services';
-import { BookDto } from '../../Book.dto';
+import { AuthorDto } from 'src/Application/Dto/Author.dto';
+import IAuthorService from 'src/Domain/Interfaces/services/IAuthor.services';
 
 @Injectable()
-export class BooksService implements IBooksService {
+export class AuthorService implements IAuthorService {
   getAll(): [] {
     throw new Error('Method not implemented.');
   }
-  getBook(): BookDto {
+  getAuthor(): AuthorDto {
     throw new Error('Method not implemented.');
   }
   update() {

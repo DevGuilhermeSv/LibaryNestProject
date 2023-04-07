@@ -1,9 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import IBooksService from 'src/Domain/Interfaces/services/IBooks.services';
 import { BookDto } from '../../Dto/Book.dto';
+import { BookRepository } from 'src/Infrastructure/Repository/BookRepository';
 
 @Injectable()
-export class BooksService implements IBooksService {
+export class BooksService {
+  constructor(private readonly bookRepository: BookRepository) {}
   getAll(): [] {
     throw new Error('Method not implemented.');
   }

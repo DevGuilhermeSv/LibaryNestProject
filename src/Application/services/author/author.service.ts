@@ -1,9 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { AuthorDto } from 'src/Application/Dto/Author.dto';
-import IAuthorService from 'src/Domain/Interfaces/services/IAuthor.services';
+import { AuthorRepository } from 'src/Infrastructure/Repository/AuthorRepository';
 
 @Injectable()
-export class AuthorService implements IAuthorService {
+export class AuthorService {
+  constructor(private readonly authorRepository: AuthorRepository) {}
   getAll(): [] {
     throw new Error('Method not implemented.');
   }

@@ -8,7 +8,7 @@ export class BooksService implements IBooksService {
     throw new Error('Method not implemented.');
   }
   getBook(): BookDto {
-    throw new Error('Method not implemented.');
+    return new BookDto();
   }
   update() {
     throw new Error('Method not implemented.');

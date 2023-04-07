@@ -1,23 +1,29 @@
 import { Body, Controller, Delete, Get, Post, Put } from '@nestjs/common';
 import { BookDto } from 'src/Application/Dto/Book.dto';
+import { BooksService } from 'src/Application/services/books/books.service';
 @Controller('books')
 export class BooksController {
-    @Get()
-    getAllBooks():BookDto[]{
-        return new Array();
-    }
+  private readonly bookService: BooksService;
 
-    @Post()
-    createBook(@Body() bookDto:BookDto): BookDto{
-        console.log(bookDto);
-        return bookDto;
-    }
-    @Put()
-    updateBook(){
+  constructor(bookservice: BooksService) {
+    this.bookService = bookservice;
+  }
+  @Get()
+  getAllBooks(): BookDto[] {
+    return [];
+  }
+  @Get()
+  getBook(): BookDto {
+    return this.bookService.getBook();
+  }
 
-    }
-    @Delete()
-    deleteBook(){
-
-    }
+  @Post()
+  createBook(@Body() bookDto: BookDto): BookDto {
+    console.log(bookDto);
+    return bookDto;
+  }
+  @Put()
+  updateBook() {}
+  @Delete()
+  deleteBook() {}
 }

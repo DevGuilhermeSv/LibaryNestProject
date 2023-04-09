@@ -18,9 +18,7 @@ export class BookDto {
   readonly name: string;
 
   @IsNotEmpty()
-  @Type(() => AuthorDto)
-  @ValidateNested({ each: true, message: 'Author need be valid' })
-  readonly author: AuthorDto[];
+  readonly authorId: [any];
 
   @IsString()
   @MaxLength(30)

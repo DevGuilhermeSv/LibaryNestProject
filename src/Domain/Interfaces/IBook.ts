@@ -1,16 +1,16 @@
 import mongoose from 'mongoose';
 import IAuthor from './IAuthor';
 
-export interface IBook extends Document {
+export abstract class IBook extends Document {
   _id: mongoose.Schema.Types.ObjectId;
   name: string;
 
-  readonly author: [IAuthor];
+   authorId: any;
 
-  readonly language: string;
+   language: string;
 
-  readonly releaseYear: number;
-  readonly publisher: string;
+   releaseYear: number;
+   publisher: string;
 
-  readonly pages: number;
+   pages: number;
 }

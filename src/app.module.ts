@@ -6,14 +6,14 @@ import { BooksService } from './Application/services/books/books.service';
 import { AuthorService } from './Application/services/author/author.service';
 import { BookRepository } from './Infrastructure/Repository/BookRepository';
 import { AuthorRepository } from './Infrastructure/Repository/AuthorRepository';
-import { Book } from './Domain/Entities/Book.schema';
-import { Author } from './Domain/Entities/Author.schema';
+import { Book, BookSchema } from './Infrastructure/Schema/Book.schema';
+import { Author, AuthorSchema } from './Infrastructure/Schema/Author.schema';
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost/libary'),
+    MongooseModule.forRoot('mongodb://localhost:27017/libary'),
     MongooseModule.forFeature([
-      { name: 'book', schema: Book },
-      { name: 'author', schema: Author },
+      { name: Book.name, schema: BookSchema },
+      { name: Author.name, schema: AuthorSchema },
     ]),
   ],
   controllers: [BooksController, AuthorController],

@@ -1,21 +1,15 @@
-import {
-  IsNotEmpty,
-  IsString,
-  MaxLength,
-  MinLength,
-  maxLength,
-} from 'class-validator';
+import { IsNotEmpty, IsString, MaxLength, MinLength } from 'class-validator';
 
 export class AuthorDto {
   @IsString()
   @IsNotEmpty()
-  @MinLength(3)
+  @MinLength(2)
   @MaxLength(100)
-  readonly name;
+  readonly name: string;
 
   @IsString()
   @IsNotEmpty()
   @MinLength(3)
   @MaxLength(100)
-  readonly surname;
+  readonly surname: string;
 }

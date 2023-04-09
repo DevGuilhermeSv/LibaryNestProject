@@ -1,14 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import Repository from './Repository';
-import IAuthor from 'src/Domain/Interfaces/IAuthor';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { AuthorDto } from 'src/Application/Dto/Author.dto';
+import { Author } from '../Schema/Author.schema';
 
 @Injectable()
-export class AuthorRepository extends Repository<IAuthor> {
+export class AuthorRepository extends Repository<Author> {
   constructor(
-    @InjectModel('author') private readonly authorModel: Model<IAuthor>,
+    @InjectModel(Author.name) private readonly authorModel: Model<Author>,
   ) {
     super(authorModel);
   }
